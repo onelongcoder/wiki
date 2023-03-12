@@ -78,6 +78,13 @@ router.post('/u', (req, res, next) => {
   // Sanitize filename
   fileMeta.originalname = sanitize(fileMeta.originalname.toLowerCase().replace(/[\s,;#]+/g, '_'))
 
+  if (fileMeta.originalname === 'image.png') {
+    // if it's default image.png, change it's name
+    // so none image will overwrite
+    const d = new Date()
+    fileMeta.originalname = `image-${d.getFullYear() + '' + (d.getMonth() + 1) + d.getDate() + '-' + Math.round(Math.random() * 100000000)}.png`
+  }
+
   // Check if user can upload at path
   const assetPath = (folderId) ? hierarchy.map(h => h.slug).join('/') + `/${fileMeta.originalname}` : fileMeta.originalname
   if (!WIKI.auth.checkAccess(req.user, ['write:assets'], { path: assetPath })) {
