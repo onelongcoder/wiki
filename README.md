@@ -22,6 +22,10 @@
 
 </div>
 
+onelong 分支
+* 上传资源的时候自动重命名，如果是image.png的话
+* 
+
 - **[Official Website](https://js.wiki/)**
 - **[Documentation](https://docs.requarks.io/)**
 - [Requirements](https://docs.requarks.io/install/requirements)
